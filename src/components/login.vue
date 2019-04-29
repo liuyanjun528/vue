@@ -30,6 +30,7 @@
 
 <script>
 import home from "@/home/home";
+import loginJs from "@/api/login";
 export default {
   name: 'login',
   data () {
@@ -60,16 +61,20 @@ export default {
       this.$refs[loginData].validate((valid) => {
         if (valid) {
             ///login路径对应nginx的匹配路径，通过nginx进行跳转后台接口，user/1是后台接口路径
-          this.$axios.get("/login/user/1")
-            .then((response) =>{
-                 console.log("response",response)
+         // this.$axios.get("/login/user/1")
+            new Promise((resolve, reject) => {
+                loginJs.login()
+                .then(response => {  
                     window.localStorage.setItem('acct',this.loginData.acct);
                     window.localStorage.setItem('pass',this.loginData.pass);
                     this.$router.push({ path: '/home', query: { username: response.data.name} })
-                    this.$Message.warning('登陆成功');  
-            }).catch(error => {
-              this.$Message.warning('登陆失败');
-              reject(error);
+                    this.$Message.warning('登陆成功');   
+                    console.log("++++++++++++++++++DDDDDDDDDDDDDDDDDDDDDDDD",response);      
+                })
+                .catch(error => {
+                        this.$Message.warning('登陆失败');
+                        reject(error);
+                });
             });
                    
         } else {
@@ -77,7 +82,7 @@ export default {
         }
       })
     },
-   
+  
   },
    mounted (){
      console.log("账号", window.localStorage.getItem('acct'))//永久保存浏览器，除非手动删除 

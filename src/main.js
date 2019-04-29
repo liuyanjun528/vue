@@ -5,11 +5,14 @@ import iView from 'iview' // 引入iview依赖
 import 'iview/dist/styles/iview.css' // 引入iview css样式
 //import VueResource from 'vue-resource' //引入http请求模块
 //import axios from './axios/index' //引入axios----http请求模块
-import axios from 'axios'
+//import axios from 'axios'
 Vue.use(iView) //使用iview组件 
     //Vue.use(VueResource) //使用VueResource--  可以在任何组件使用http请求。this.$HTTP.GET({})
 Vue.config.productionTip = false
-Vue.prototype.$axios = axios //声明使用axios   http插件
+    // Vue.prototype.$axios = axios.create({ //如果全局配置以后，组件使用$axios会用配置的域名，否则 就用本地项目的ip
+    //     baseURL: 'http://vue.iwiew.project', //域名，nginx监听到跳转后台127.0.0.1：80
+    //     timeout: 1000,
+    // }); //声明使用axios   http插件，抽取到文件，引入使用，更简洁
 
 //路由之--全局守卫，to代表你要去的路由地址，from代表从哪个路由离开，next代表一个函数
 router.beforeEach((to, from, next) => {
