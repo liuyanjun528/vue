@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- 显示路由过来的页面 -->
+    <!-- 显示路由过来的页面   app.vue作为main.js渲染的组件-->
     <router-view></router-view>
   </div>
 </template>
@@ -11,6 +11,10 @@ export default {
    },
   data () {
     return {
+      baby:{
+        name:"cln",
+        age:"25",
+      }
     }
   }
 }

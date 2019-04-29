@@ -63,6 +63,8 @@ export default {
           this.$axios.get("/login/user/1")
             .then((response) =>{
                  console.log("response",response)
+                    window.localStorage.setItem('acct',this.loginData.acct);
+                    window.localStorage.setItem('pass',this.loginData.pass);
                     this.$router.push({ path: '/home', query: { username: response.data.name} })
                     this.$Message.warning('登陆成功');  
             }).catch(error => {
@@ -75,8 +77,15 @@ export default {
         }
       })
     },
-    
-  }
+   
+  },
+   mounted (){
+     console.log("账号", window.localStorage.getItem('acct'))//永久保存浏览器，除非手动删除 
+     console.log("密码", window.localStorage.getItem('pass')) 
+    //window.sessionStorage.setItem()//保存会话，关闭浏览器没有了
+    //sessionStorage和localStorage只能存json格式字符串，对象需要存储storage的话可以序列化
+    //JSON.stringify() JSON.parse()序列化，反序列化
+    }   
 }
 </script>
 
