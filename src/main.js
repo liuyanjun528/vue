@@ -24,8 +24,9 @@ new Vue({
         el: '#app',
         /* el挂载----->'#app 引用index，html那个页面 */
         router, //vue实力中声明使用上面import引入的路由
-        components: { App }, //声明组件
-        template: '<App/>' //根组件app.vue，然后把其他需要展示的组建，给vvm实力，vvm实现渲染在挂在的index.html页面上
+        components: { App }, //声明上面引入的App.vue组件,
+        template: '<App/>' //"template模板"将App渲染在挂载的元素标签上"，
+            //然后把其他需要展示的组建，给vvm实力，vvm实现渲染在挂在的index.html页面上
     })
     //引入配置的路由，vue实力加载路由.js,自动跳转到配置的路径，
     //            比如      path: '/',
