@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <!-- 显示路由过来的页面   app.vue作为main.js渲染的组件-->
+    <!-- 显示路由过来的组件页面   app.vue作为main.js渲染的组件-->
     <router-view></router-view>
+    <!--缓存路由标签 ，里面可以包含 <router-view> ，缓存组件对象-->
+    <!-- <keep-alive></keep-alive> -->
   </div>
 </template>
 <script>

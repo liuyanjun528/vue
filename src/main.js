@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
     }
 })
 
-new Vue({
+new Vue({ //注意！！！！配置对象的属性名都是固定好的，所以，名字不能随便起
         el: '#app',
         /* el挂载----->'#app 引用index，html那个页面 */
         router, //vue实力中声明使用上面import引入的路由
