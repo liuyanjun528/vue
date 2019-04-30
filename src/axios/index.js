@@ -3,7 +3,7 @@ import axios from 'axios';
 const instance = axios.create({
     baseURL: 'http://vue.iwiew.project', //域名，nginx监听到跳转后台127.0.0.1：80
     timeout: 1000,
-});
+}); //如果本地8080访问nginx127.0.0.1也会存在跨域的问题，需要先进nginx，在转发
 // 给axios实例对象instance添加请求拦截器
 instance.interceptors.request.use(function(config) {
     // 在发送请求之前做些什么
