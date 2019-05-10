@@ -5,13 +5,14 @@
        <!-- :to="/path" -->
         <div class="from-wrap">
             <h2>登录</h2>
+            
             <Form ref="loginData" :model="loginData" :rules="ruleValidate" :label-width="80">
                 <FormItem label="账号" prop="acct">
                     <Input type="text" v-model="loginData.acct" placeholder="请输入账号">
                     <Icon type="ios-person-outline" slot="prepend"></Icon> 
                     </Input>
                 </FormItem>
-              
+             
                 <FormItem label="密码" prop="pass">
                     <Input type="password" v-model="loginData.pass" placeholder="请输入密码">
                      <Icon type="ios-lock-outline" slot="prepend"></Icon>
@@ -20,10 +21,17 @@
                 <FormItem class="form-footer">
                     <Button type="primary" @click="login('loginData')" >Submit</Button>
                 </FormItem>
+
+                    <!-- 读取vuex state状态对象里面的数据 -->
+                   <!-- <h3>{{$store.state.count}}</h3>  -->
+                     <h3>{{count}}</h3> 
+                  <!-- 获取vuex状态中的值，计算属性  -->
+                    <h3>{{loveyou}}</h3> 
+                <Button type="primary" @click="jia" >加一</Button>
+                <Button type="primary" @click="jian" >减一</Button>  
             </Form>
             <br/>
-         
-               
+        
         </div>
     </div>
 </template>
@@ -31,18 +39,16 @@
 <script>
 import home from "@/home/home";
 import loginJs from "@/api/login";
+import {mapState,mapActions,mapGetters} from "vuex"//引入vuex的Api
 export default {
   name: 'login',
   data () {
     return {
-    
+     
       loginData:{
         acct:"",
         pass:"",
-
-      },
-    
-    
+      }, 
        ruleValidate: {
         acct: [
             { required: true, message: '账号不能为空' },
@@ -52,11 +58,29 @@ export default {
             { required: true, message: '密码不能为空', trigger: 'blur' },
             { type: 'string', min: 6, max: 16, message: '密码长度6-16个字符', trigger: 'blur' }
         ]
-      }
-    }
-  },
+      },
 
+    };
+  
+  },
+//计算属性
+computed:{
+    // love(){//vuex 读取计算属性的值 
+    //     return this.$store.getters.loveyou     
+    // }
+    ...mapState(['count']),////相当于直接读取state中的值
+    ...mapGetters(['loveyou'])//相当于直接去调用getters中的方法
+},
   methods: {
+      ...mapActions(['jia','jian']),//相当于直接去调用action中的方法
+    //   jia(){
+    //       //通知vuex 去增加count，通过 this.$store.dispatch
+    //     this.$store.dispatch('jia')//触发store中的actions调用，对应的，方法名和actions中的要对应
+    //   },
+    //   jian(){
+    //        this.$store.dispatch('jian')//触发store中的actions调用
+    //   },
+
     login (loginData) {
       this.$refs[loginData].validate((valid) => {
         if (valid) {
@@ -113,7 +137,7 @@ html,body {
     top: 50%;
     margin-top: -150px;
     width: 400px;
-    height: 240px;
+    height: 400px;
     border-radius: 10px;
     background-color: #fff;
     padding: 20px 30px;

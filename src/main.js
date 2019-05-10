@@ -3,6 +3,8 @@ import App from './App' //引入app.vue
 import router from './router/index' //引入router下的index.js，配置的路由
 import iView from 'iview' // 引入iview依赖
 import 'iview/dist/styles/iview.css' // 引入iview css样式
+import store from './store'
+//import vuex from 'vuex
 //import VueResource from 'vue-resource' //引入http请求模块vue1.0版本使用，2.0推荐使用axios
 //Vue.use(VueResource) //使用VueResource--  可以在任何组件使用http请求。this.$HTTP.GET({})
 Vue.config.productionTip = false //设置为 false 以阻止 vue 在启动时生成生产提示。
@@ -26,8 +28,9 @@ new Vue({ //注意！！！！配置对象的属性名都是固定好的，所�
         /* el挂载----->'#app 引用index，html那个页面 */
         router, //vue实力中声明使用上面import引入的路由
         components: { App }, //声明上面引入的App.vue组件,
-        template: '<App/>' //"template模板"将App渲染在挂载的元素标签上"，
-            //然后把其他需要展示的组建，给vvm实力，vvm实现渲染在挂在的index.html页面上
+        template: '<App/>', //"template模板"将App渲染在挂载的元素标签上"，
+        //然后把其他需要展示的组建，给vvm实力，vvm实现渲染在挂在的index.html页面上
+        store, //挂载vuex,所有组件会有$store这个属性。！！！名字不能随便起只能叫store
     })
     //引入配置的路由，vue实力加载路由.js,自动跳转到配置的路径，
     //            比如      path: '/',
